@@ -16,10 +16,28 @@ fn print_elements3(elements: &[String]){
 
 }
 
-fn main() {
-    let colors = vec![String::from("red"), String::from("green"), String::from("blue")];
+fn shorten_string(elements: &mut [String])  {
+    elements.iter_mut().for_each(|el| el.truncate(1));
+}
 
-    print_elements3(&colors);
+fn to_uppercase(elements: &[String]) -> Vec<String> {
+    elements.iter()
+    .map(|el| el.to_uppercase())
+    .collect::<Vec<String>>()
+}
+
+fn main() {
+    let mut colors = vec![String::from("red"), String::from("green"), String::from("blue")];
+
+    print_elements2(&colors);
+
+    shorten_string(&mut colors);
+
+    print_elements2(&colors);
+
+    let upper_colors = to_uppercase(&colors);
+
+    print_elements2(&upper_colors);
 
     // print_elements1(&colors);
 
