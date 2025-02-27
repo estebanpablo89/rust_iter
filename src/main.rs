@@ -8,7 +8,7 @@ fn print_elements2(elements: &Vec<String>){
     elements.iter().for_each(|el|println!("{}", el));
 }
 
-fn print_elements3(elements: &Vec<String>){
+fn print_elements3(elements: &[String]){
     elements
         .iter()
         .map(|el|format!("{} {}", el, el))
