@@ -26,6 +26,24 @@ fn to_uppercase(elements: &[String]) -> Vec<String> {
     .collect::<Vec<String>>()
 }
 
+fn move_elements(vec_a: Vec<String>, vec_b: &mut Vec<String>) {
+    vec_a.into_iter().for_each(|el| vec_b.push(el));
+}
+
+fn explode(elements: &[String]) -> Vec<Vec<String>> {
+    elements
+        .iter()
+        .map(|el| el.chars().map(|c| c.to_string()).collect())
+        .collect()
+}
+
+fn find_color_or(elements: &[String], search: &str , fallback: &str)-> String {
+    elements
+        .iter()
+        .find(|el| el.contains(search))
+        .map_or(String::from(fallback), |el| el.to_string())
+}
+
 fn main() {
     let mut colors = vec![String::from("red"), String::from("green"), String::from("blue")];
 
@@ -39,7 +57,23 @@ fn main() {
 
     print_elements2(&upper_colors);
 
-    // print_elements1(&colors);
+    let mut colors2 = vec![String::from("red"), String::from("green"), String::from("blue")];
+    
+    let mut destination = vec![];
+
+    move_elements(colors2, &mut destination);
+
+    println!("{:#?}", destination);
+
+    let mut colors3 = vec![String::from("red"), String::from("green"), String::from("blue")];
+
+    let exploded_colors = explode(&colors3);
+
+    println!("{:#?}", exploded_colors);
+
+    let color = find_color_or(&colors3, "gr", "orange");
+
+    println!("{}", color);
 
     // let mut colors_iter = colors.iter();
 
